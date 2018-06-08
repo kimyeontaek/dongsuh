@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dongsuh.dao.FaqDAO">
+
+	<insert id="getInsertResult">
+		insert into admin_notice
+		values(SEQU_FAQ.nextval,#{title},#{content},SYSDATE)
+	</insert>
+
+	<select id="getResultList" resultType="dongsuh.vo.FaqgonVO">
+		select * from admin_notice
+	</select>
+
+	<select id="getResultVO" resultType="dongsuh.vo.FaqgonVO">
+		SELECT TITLE, CONTENT FROM
+		ADMIN_NOTICE WHERE NO = #{param1}
+	</select>
+
+	<delete id="getDeleteResult">
+		delete from admin_notice where no = #{no}
+	</delete>
+
+	<select id="getnoResult" resultType="String">
+		select rfname from
+		admin_notice where no=#{param1}
+	</select>
+	
+	<update id="getUpdateresult">
+		update admin_notice set title=#{title}, content =#{content} where no=#{param1}
+	</update>
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dongsuh.dao.LoginDAO">
+	<!-- 아이디 찾기 -->
+	<select id="getIdResult" resultType="String">
+		select id from
+		dongsuh_member where name=#{idFindForm_name} and phone=#{idFindForm_phone}
+	</select>
+
+	<!-- 비밀번호 찾기 -->
+	<select id="getPassResult" resultType="String">
+		select pass from
+		dongsuh_member where id=#{passFindForm_id} and name=#{passFindForm_name} and phone=#{passFindForm_phone} and
+		calender=#{passFindForm_pnum}
+	</select>
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dongsuh.dao.BrandDAO">
+
+	<select id="getMainList" resultType="dongsuh.vo.BrandVO">
+		SELECT * FROM brandMain
+	</select>
+
+	<select id="getResultVO" resultType="dongsuh.vo.BrandVO">
+		SELECT BRANDINFO, PROINFO1,
+		PROINFO2, PROINFO3 FROM BRANDSAL WHERE brandname=#{param1}
+	</select>
+
+	<select id="getItemList" resultType="dongsuh.vo.BrandVO">
+		SELECT ITEMNAME, ITEMPRICE
+		FROM ITEMLIST WHERE brandname=#{param1}
+	</select>
+
+	<insert id="getInsertOrderResult">
+		insert into order_table
+		values(#{name},#{num},#{price})
+	</insert>
+
+	<select id="getOrderListResult" resultType="dongsuh.vo.BrandVO">
+		select * from
+		order_table
+	</select>
+
+	<delete id="getOrderTruncateResult"> delete from order_table </delete>
+
+	<insert id="getInsertBasketResult">
+		insert into basket_table
+		values(sequ_basket.nextval,#{param1},#{baname},#{banum},#{baprice})
+	</insert>
+
+	<select id="getBasketListResult" resultType="dongsuh.vo.BrandVO">
+		select name, num,
+		price from basket_table where id = #{param1}
+	</select>
+
+	<insert id="getInsertResult">
+		insert into brandSal_reply
+		values(#{bname},#{content},#{writer},SYSDATE)
+	</insert>
+
+	<select id="getReplyList" resultType="dongsuh.vo.BrandVO">
+		select rownum as rno,
+		content, writer, TO_CHAR(RDATE,'YYYY/MM/DD') AS RDATE from ( select *
+		from brandSal_reply order by rdate) where brandname = #{param1}
+	</select>
+
+</mapper>

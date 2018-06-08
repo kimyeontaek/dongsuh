@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dongsuh.dao.MemberDAO">
+
+	<insert id="getInsertResult">
+		insert into DONGSUH_MEMBER
+		values(#{id},#{pass},#{name},#{calender},#{bd},#{totalEmail},#{totalPhone},#{totalAd},#{agree},sysdate)
+	</insert>
+
+	<select id="getIdCheckResult" resultType="int">
+		select count(*) from
+		dongsuh_member where id=#{param1}
+	</select>
+
+	<select id="getResultList" resultType="dongsuh.vo.MemberVO">
+		select id, pass, name,
+		calender, email, phone, ad, agree, to_char(jdate, 'yyyy-mm-dd') from
+		(SELECT * FROM dongsuh_member ORDER BY JDATE DESC)
+	</select>
+
+	<select id="getUpdateResultVO" resultType="dongsuh.vo.MemberVO">
+		select name, email,
+		phone, ad from dongsuh_member where id=#{param1}
+	</select>
+
+	<update id="getUpdateNameResultVO">
+		update dongsuh_member set name = #{name}, email =
+		#{sumEmail}, phone
+		= #{sumPhone} where id = #{param1}
+	</update>
+
+	<update id="getUpdatePassResultVO">
+		update dongsuh_member set pass = #{pass} where id =
+		#{param1}
+	</update>
+
+</mapper>

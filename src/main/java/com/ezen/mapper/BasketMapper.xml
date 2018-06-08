@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dongsuh.dao.BasketDAO">
+
+	<delete id="getSelectDeleteResult">
+		delete from basket_table where no = #{no}
+	</delete>
+
+	<insert id="getOrderList">
+		insert into order_list_table
+		values(sysdate,#{param1},#{hname},#{hnum},#{hprice})
+	</insert>
+
+	<delete id="getTruncate"> delete from basket_table </delete>
+
+	<select id="getOrderListResult" resultType="dongsuh.vo.BasketVO">
+		select * from order_list_table where id = #{param1} order by odate
+	</select>
+
+</mapper>

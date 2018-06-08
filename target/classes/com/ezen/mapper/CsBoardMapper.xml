@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dongsuh.dao.CsBoardDAO">
+
+	<insert id="getInsertResult">
+		insert into cs_board
+		values(SEQU_CS_BOARD.nextval,#{gubun},#{name},#{content},#{fname},#{rfname},SYSDATE,
+		'empty','1989/10/21')
+	</insert>
+
+	<update id="getReplyInsertResult">
+		update CS_BOARD set REPLY =#{reply}, RDATE = SYSDATE
+		where NO=#{no}
+	</update>
+
+	<update id="getNullReplyInsertResult">
+		update CS_BOARD set REPLY ='empty', RDATE = SYSDATE
+		where NO=#{no}
+	</update>
+
+	<select id="getResultList" resultType="dongsuh.vo.CsBoardVO">
+		SELECT ROWNUM AS RNO, NO,
+		GUBUN, NAME, SUBSTR(CONTENT,1,10) as content,
+		TO_CHAR(BDATE,'YYYY/MM/DD') as bdate FROM (SELECT * FROM CS_BOARD
+		ORDER BY BDATE DESC)
+	</select>
+
+	<select id="getResultVO" resultType="dongsuh.vo.CsBoardVO">
+		SELECT GUBUN, BDATE, NAME,
+		FNAME, CONTENT, REPLY, RDATE FROM CS_BOARD WHERE NO = #{param1}
+	</select>
+
+	<update id="getUpdateresult">
+		update cs_board set gubun=#{gubun}, content
+		=#{content}, fname=#{fname}, rfname=#{rfname}, bdate=sysdate where
+		no=#{no}
+	</update>
+
+	<update id="getUpdateresultNoFile">
+		update cs_board set gubun=#{gubun}, content
+		=#{content}, bdate=sysdate where no=#{no}
+	</update>
+
+	<delete id="getDeleteResult">
+		delete from cs_board where no = #{no}
+	</delete>
+
+	<update id="getUpdateresultFname">
+		update cs_board set fname = null, rfname=null where
+		no = #{no}
+	</update>
+
+	<select id="getRfnameResult" resultType="String">
+		select rfname from
+		cs_board where no=#{param1}
+	</select>
+
+	<select id="getRfnameResult2" resultType="String">
+		select rfname from
+		cs_board where no=#{no}
+	</select>
+
+	<delete id="getSelectDeleteResult">
+		delete from cs_board where no = #{no}
+	</delete>
+
+	<select id="execTotalCount" resultType="int">
+		select count(*) from
+		cs_board
+	</select>
+
+	<select id="execSidCount" resultType="int">
+		select count(*) from
+		cs_board where name = #{param1}
+	</select>
+
+	<select id="execSerchCount" resultType="int">
+		select count(*) from
+		cs_board where content like "%"+#{param1}+"%" and name =#{param2}
+	</select>
+
+	<select id="execSerchCount2" resultType="int">
+		select count(*) from
+		cs_board where content like #{param1}
+	</select>
+
+	<select id="getAllResultList" resultType="dongsuh.vo.CsBoardVO">
+		select * from (select
+		rownum as rno,no, to_char(bdate,'YYYY-MM-DD') as bdate
+		,gubun,
+		substr(content,1,20) as content , name, fname, reply,
+		to_char(rdate,'YYYY-MM-DD') as rdate from (select no, bdate,
+		gubun,
+		content , name, fname, reply, rdate from cs_board
+		order by bdate desc))
+		where rno between #{param1} and #{param2}
+	</select>
+
+	<select id="getResultList2" resultType="dongsuh.vo.CsBoardVO">
+		select * from (select
+		rownum as rno,no, to_char(bdate,'YYYY-MM-DD') as bdate ,gubun,
+		substr(content,1,20) as content , name, fname, reply,
+		to_char(rdate,'YYYY-MM-DD') as rdate from (select no, bdate,
+		gubun,
+		content , name, fname, reply, rdate from cs_board where
+		name =
+		#{param3} order by bdate desc)) where rno between
+		#{param1} and
+		#{param2}
+	</select>
+
+	<select id="getIdCheckResult" resultType="int">
+		select count(*) from
+		dongsuh_member where id = #{param1}
+	</select>
+
+	<select id="getSerchResultList" resultType="dongsuh.vo.CsBoardVO">
+		select * from (select
+		rownum as rno,no, to_char(bdate,'YYYY-MM-DD') as bdate ,gubun,
+		substr(content,1,20) as content , name, fname, reply,
+		to_char(rdate,'YYYY-MM-DD') as rdate from (select no, bdate,
+		gubun,
+		content , name, fname, reply, rdate from cs_board
+		order by bdate desc)
+		where content like #{param3}) where (rno
+		between #{param1} and
+		#{param2}) and (name = #{param4})
+	</select>
+
+	<select id="getSerchResultList2" resultType="dongsuh.vo.CsBoardVO">
+		select * from
+		(select rownum as rno,no, to_char(bdate,'YYYY-MM-DD') as bdate ,gubun,
+		substr(content,1,20) as content , name, fname, reply,
+		to_char(rdate,'YYYY-MM-DD') as rdate from (select no, bdate,
+		gubun,
+		content , name, fname, reply, rdate from cs_board
+		order by bdate desc) where content like #{param3}) where (rno
+		between
+		#{param1} and #{param2})
+	</select>
+
+
+
+</mapper>
