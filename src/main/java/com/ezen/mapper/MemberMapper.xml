@@ -27,14 +27,12 @@
 	</select>
 
 	<update id="getUpdateNameResultVO">
-		update dongsuh_member set name = #{name}, email =
-		#{sumEmail}, phone
-		= #{sumPhone} where id = #{param1}
+		update dongsuh_member set name = #{param2}, 
+		email = #{param3}, phone = #{param4} where id = #{param1}
 	</update>
 
 	<update id="getUpdatePassResultVO">
-		update dongsuh_member set pass = #{pass} where id =
-		#{param1}
+		update dongsuh_member set pass = #{param2} where id = #{param1}
 	</update>
 
 </mapper>

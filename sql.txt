@@ -1,0 +1,195 @@
+/*Faq 테이블 생성 */
+CREATE TABLE ADMIN_NOTICE(
+   NO VARCHAR2(500) PRIMARY KEY,
+   TITLE VARCHAR2(100),
+   CONTENT VARCHAR2(500),
+   FDATE DATE
+);
+
+/* 회원가입 테이블 생성 */
+CREATE TABLE DONGSUH_MEMBER(
+  ID VARCHAR2(30) PRIMARY KEY,
+  PASS VARCHAR2(30),
+  NAME VARCHAR2(30),
+  CALENDER VARCHAR2(30),
+  bd varchar2(10),
+  EMAIL VARCHAR2(30),
+  PHONE VARCHAR2(30),
+  AD VARCHAR2(200),  
+  AGREE varchar2 (10),
+  jdate date
+);
+
+/* 브랜드 메인 테이블 */
+create table brandMain(
+brandname      varchar2(20) primary key,
+brandimage      varchar2(40)
+);
+
+/* 브랜드 메인 테이블에 사진경로 추가 */
+insert into brandMain values ('maxim','brand_logo_maxim1.png');
+insert into brandMain values ('frima','brand_logo_frima.png');
+insert into brandMain values ('kanu','brand_logo_kanu.png');
+insert into brandMain values ('maxwell','brand_logo_maxwell.png');
+insert into brandMain values ('post','brand_logo_post.png');
+insert into brandMain values ('starbucks','brand_logo_starbucks.png');
+
+/* 브랜드 SAL 테이블 생성 */
+create table brandsal(
+brandname   varchar2(20)
+CONSTRAINT brandsal_FK REFERENCES brandMain(brandname)
+  ON DELETE CASCADE,
+brandinfo   varchar2(40),
+proinfo1     varchar2(40),
+proinfo2     varchar2(40),
+proinfo3     varchar2(40)
+);
+
+/* 브랜드 SAL 테이블에 사진경로 추가 */
+INSERT INTO brandsal VALUES ('maxim','brand_shop_maxim_mix2.JPG','brand_info1.jpg','brand_info2.jpg','brand_info3.jpg');
+
+/* 상품선택 목록 테이블 */
+create table itemlist(
+brandname    varchar2(40)
+CONSTRAINT itemlist_FK REFERENCES brandMain(brandname)
+  ON DELETE CASCADE,
+itemName   varchar2(40),
+itemPrice  varchar2(40)
+);
+
+/* 상품 목록 추가 */
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 01','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 02','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 03','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 04','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 05','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 06','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 07','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 08','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 09','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 10','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 11','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 12','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 13','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 14','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 15','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 16','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 17','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 18','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 19','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 20','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 21','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 22','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 23','1000');
+INSERT INTO itemlist VALUES ('maxim','맥심 선택 24','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 01','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 02','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 03','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 04','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 05','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 06','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 07','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 08','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 09','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 10','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 11','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 12','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 13','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 14','1000');
+INSERT INTO itemlist VALUES ('frima','프리마 선택 15','1000');
+INSERT INTO itemlist VALUES ('kanu','카누 선택 01','1000');
+INSERT INTO itemlist VALUES ('kanu','카누 선택 02','1000');
+INSERT INTO itemlist VALUES ('kanu','카누 선택 03','1000');
+INSERT INTO itemlist VALUES ('kanu','카누 선택 04','1000');
+INSERT INTO itemlist VALUES ('kanu','카누 선택 05','1000');
+INSERT INTO itemlist VALUES ('kanu','카누 선택 06','1000');
+INSERT INTO itemlist VALUES ('kanu','카누 선택 07','1000');
+INSERT INTO itemlist VALUES ('kanu','카누 선택 08','1000');
+INSERT INTO itemlist VALUES ('kanu','카누 선택 09','1000');
+INSERT INTO itemlist VALUES ('maxwell','맥스윌 선택 01','1000');
+INSERT INTO itemlist VALUES ('maxwell','맥스윌 선택 02','1000');
+INSERT INTO itemlist VALUES ('maxwell','맥스윌 선택 03','1000');
+INSERT INTO itemlist VALUES ('maxwell','맥스윌 선택 04','1000');
+INSERT INTO itemlist VALUES ('maxwell','맥스윌 선택 05','1000');
+INSERT INTO itemlist VALUES ('maxwell','맥스윌 선택 06','1000');
+INSERT INTO itemlist VALUES ('maxwell','맥스윌 선택 07','1000');
+INSERT INTO itemlist VALUES ('maxwell','맥스윌 선택 08','1000');
+INSERT INTO itemlist VALUES ('maxwell','맥스윌 선택 09','1000');
+INSERT INTO itemlist VALUES ('maxwell','맥스윌 선택 10','1000');
+INSERT INTO itemlist VALUES ('maxwell','맥스윌 선택 11','1000');
+INSERT INTO itemlist VALUES ('post','포스트 선택 01','1000');
+INSERT INTO itemlist VALUES ('post','포스트 선택 02','1000');
+INSERT INTO itemlist VALUES ('post','포스트 선택 03','1000');
+INSERT INTO itemlist VALUES ('starbucks','스타벅스 선택 01','1000');
+INSERT INTO itemlist VALUES ('starbucks','스타벅스 선택 02','1000');
+INSERT INTO itemlist VALUES ('starbucks','스타벅스 선택 03','1000');
+INSERT INTO itemlist VALUES ('starbucks','스타벅스 선택 04','1000');
+INSERT INTO itemlist VALUES ('starbucks','스타벅스 선택 05','1000');
+INSERT INTO itemlist VALUES ('starbucks','스타벅스 선택 06','1000');
+INSERT INTO itemlist VALUES ('starbucks','스타벅스 선택 07','1000');
+INSERT INTO itemlist VALUES ('starbucks','스타벅스 선택 08','1000');
+INSERT INTO itemlist VALUES ('starbucks','스타벅스 선택 09','1000');
+
+/* 상품평 테이블 생성 */
+create table brandSal_reply (
+  brandname varchar2(20)
+CONSTRAINT brandSal_reply_FK REFERENCES brandMain(brandname)
+  ON DELETE CASCADE,
+  content   varchar2(200) not null,
+  writer    varchar2(20) not null,
+  rdate     date
+);
+
+/* 바로구매하기 테이블 */
+create table order_table(
+  name      varchar2(100),
+  num       number(20),
+  price     number(20)
+);
+
+/* 장바구니 테이블 */
+create table basket_table(
+  no        number(5) primary key,
+  id        varchar2(30)
+CONSTRAINT basket_table_FK REFERENCES dongsuh_member(id)
+  ON DELETE CASCADE,
+  name      varchar2(100),
+  num       number(20),
+  price     number(20)
+);
+
+/* 장바구니 테이블 시퀀스 생성 */
+create sequence sequ_basket start with 1 increment by 1;
+
+/* 구매내역 테이블 생성 */
+create table order_list_table(
+  odate     date,
+  id        varchar2(30)
+CONSTRAINT order_list_table_FK REFERENCES dongsuh_member(id)
+  ON DELETE CASCADE,
+  name      varchar2(100),
+  num       number(20),
+  price     number(20)
+);
+
+/* 문의내역 테이블 시퀀스 생성 */
+CREATE SEQUENCE SEQU_CS_BOARD
+	START WITH 1
+	INCREMENT BY 1;
+    
+/* 문의내역 테이블 생성 */    
+CREATE TABLE CS_BOARD(
+	NO VARCHAR2(20) PRIMARY KEY,
+	GUBUN VARCHAR2(20),
+	NAME VARCHAR2(20)
+    CONSTRAINT CS_BOARD_FK REFERENCES dongsuh_member(id)
+    ON DELETE CASCADE,
+	CONTENT VARCHAR2(500),
+	FNAME VARCHAR(50),
+	RFNAME VARCHAR(100),
+	BDATE DATE,
+	REPLY VARCHAR2 (500),
+	RDATE DATE
+);
+
+commit;

@@ -5,6 +5,7 @@
 
 <mapper namespace="dongsuh.dao.IndexDAO">
 	
+	<!-- 로그인 -->
 	<select id="getLoginResult" resultType="int">
 		select count(*) from dongsuh_member where id=#{id} and pass=#{pass}
 	</select>

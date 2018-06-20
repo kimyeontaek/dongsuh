@@ -178,7 +178,7 @@ padding-top:15px;
 	
 	                    <li>
 	                        <label class="bd" >이메일</label>                  
-	                        <input type="text" id="email1" name="sumEmail" maxlength="30" value="${vo.sumEmail}"/>	                        
+	                        <input type="text" id="email1" name="email" maxlength="30" value="${vo.email}"/>	                        
 	                        <p id="update_p"><font color ="#bebebe">아이디, 비밀번호 찾기 등 본인확인이 필요한 경우 사용할 이메일 주소입니다.</font></p>
 	              		</li>
 	              		
@@ -186,7 +186,7 @@ padding-top:15px;
 	                   	
 	                    <li>
 	                       <label class="bd">휴대폰번호</label>
-	                       <input type="text" name="sumPhone" value="${vo.sumPhone}" >	                       
+	                       <input type="text" name="phone" value="${vo.phone}" >	                       
 	                       <p id="update_p"><font color ="#bebebe">아이디, 비밀번호 찾기 등 본인확인이 필요한 경우 또는 유료 결제 등 네이버로부터 알림을 받을 때 사용할 휴대전화입니다.</font></p>
 	                    </li>	                    
 	                       

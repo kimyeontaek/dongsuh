@@ -49,9 +49,7 @@ public class CsBoardVO {
 		this.file = file;
 	}
 
-	public String[] getCsBoard_checkbox() {
-		//System.out.println("csBoard_checkbox.length");
-		
+	public String[] getCsBoard_checkbox() {		
 		return csBoard_checkbox;
 	}
 

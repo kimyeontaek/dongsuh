@@ -40,12 +40,21 @@
 	</update>
 
 	<update id="getUpdateresultNoFile">
-		update cs_board set gubun=#{gubun}, content
-		=#{content}, bdate=sysdate where no=#{no}
+		update cs_board set gubun=#{gubun},
+		content=#{content}, bdate=sysdate
+		where no= #{no}
 	</update>
 
 	<delete id="getDeleteResult">
 		delete from cs_board where no = #{no}
+	</delete>
+	
+	<delete id="getSelectDeleteResult">
+		delete from cs_board where no = #{param1}
+	</delete>
+	
+	<delete id="getSelectDeleteResult2">
+		delete from cs_board where no = #{param1}
 	</delete>
 
 	<update id="getUpdateresultFname">
@@ -63,10 +72,6 @@
 		cs_board where no=#{no}
 	</select>
 
-	<delete id="getSelectDeleteResult">
-		delete from cs_board where no = #{no}
-	</delete>
-
 	<select id="execTotalCount" resultType="int">
 		select count(*) from
 		cs_board
@@ -79,12 +84,12 @@
 
 	<select id="execSerchCount" resultType="int">
 		select count(*) from
-		cs_board where content like "%"+#{param1}+"%" and name =#{param2}
+		cs_board where content like '%'||#{param1}||'%' and name = #{param2}
 	</select>
 
 	<select id="execSerchCount2" resultType="int">
 		select count(*) from
-		cs_board where content like #{param1}
+		cs_board where content like '%'||#{param1}||'%'
 	</select>
 
 	<select id="getAllResultList" resultType="dongsuh.vo.CsBoardVO">
@@ -125,7 +130,7 @@
 		gubun,
 		content , name, fname, reply, rdate from cs_board
 		order by bdate desc)
-		where content like #{param3}) where (rno
+		where content like '%'||#{param3}||'%') where (rno
 		between #{param1} and
 		#{param2}) and (name = #{param4})
 	</select>
@@ -137,9 +142,11 @@
 		to_char(rdate,'YYYY-MM-DD') as rdate from (select no, bdate,
 		gubun,
 		content , name, fname, reply, rdate from cs_board
-		order by bdate desc) where content like #{param3}) where (rno
+		order by bdate desc)
+		where content like '%'||#{param3}||'%') where (rno
 		between
-		#{param1} and #{param2})
+		#{param1} and
+		#{param2})
 	</select>
 
 

@@ -1,6 +1,7 @@
 package com.ezen.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -63,16 +64,22 @@ public class BrandController {
 		ModelAndView mv = new ModelAndView();
 
 		BrandDAO dao = sqlSession.getMapper(BrandDAO.class);
-		// 바로구매하기 테이블에 데이터 추가
-		int result = dao.getInsertOrderResult(vo);
-		int sum = 0;
+		int result = 0;
+
+		for (int i = 0; i < vo.getNames().length; i++) {
+			// 바로구매하기 테이블에 상품목록 저장
+			result = dao.getInsertOrderResult(vo.getNames()[i],
+					vo.getNums()[i], vo.getPrices()[i]);
+		}
 		// 바로구매하기 목록 보여주기
 		ArrayList<BrandVO> list = dao.getOrderListResult();
+
 		// 총 상품금액 계산
-		for (int i = 0; i < vo.getPrice().length; i++) {
-			sum = (vo.getPrice()[i] * vo.getNum()[i]) + sum;
+		int sum = 0;
+		for (int i = 0; i < vo.getPrices().length; i++) {
+			sum = (vo.getPrices()[i] * vo.getNums()[i]) + sum;
 		}
-		// 바로구매하기 테이블 삭제
+		// 바로구매하기 테이블 삭제 -> 바로구매하기는 임시로 저장하여 리스트만 출력
 		dao.getOrderTruncateResult();
 		if (result == 1) {
 			mv.addObject("list", list);
@@ -87,12 +94,20 @@ public class BrandController {
 	public ModelAndView basket_insert(BrandVO vo, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		String sid = (String) session.getAttribute("sid");
-		int sum = 0;
 		BrandDAO dao = sqlSession.getMapper(BrandDAO.class);
-		int result = dao.getInsertBasketResult(vo, sid);
+		int result = 0;
+		for (int i = 0; i < vo.getBaname().length; i++) {
+			// 장바구니 테이블에 상품목록 저장
+			result = dao.getInsertBasketResult(sid, vo.getBaname()[i],
+					vo.getBanum()[i], vo.getBaprice()[i]);
+		}
+		// 바로구매하기 목록 보여주기
 		ArrayList<BrandVO> list = dao.getBasketListResult(sid);
+
+		// 총 상품금액 계산
+		int sum = 0;
 		for (BrandVO arr : list) {
-			sum = (arr.getPrices() * arr.getNums()) + sum;
+			sum = (arr.getPrice() * arr.getNum()) + sum;
 		}
 		if (result == 1) {
 			mv.addObject("list", list);
@@ -114,7 +129,7 @@ public class BrandController {
 		ArrayList<BrandVO> list = dao.getBasketListResult(sid);
 		// 총 판매액 계산
 		for (BrandVO arr : list) {
-			sum = (arr.getPrices() * arr.getNums()) + sum;
+			sum = (arr.getPrice() * arr.getNum()) + sum;
 		}
 
 		mv.addObject("list", list);
@@ -131,7 +146,6 @@ public class BrandController {
 		BrandDAO dao = sqlSession.getMapper(BrandDAO.class);
 		// 상품평 등록
 		int result = dao.getInsertResult(vo);
-
 		return String.valueOf(result);
 	}
 
@@ -152,10 +166,9 @@ public class BrandController {
 			obj.put("content", vo.getContent());
 			obj.put("writer", vo.getWriter());
 			obj.put("rdate", vo.getRdate());
-
+			// JSONArray에 입력 후 전달
 			jarray.add(obj);
 		}
-
 		return jarray;
 	}
 }

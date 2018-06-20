@@ -1,6 +1,7 @@
 package dongsuh.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import dongsuh.vo.BrandVO;
 
@@ -16,7 +17,7 @@ public interface BrandDAO {
 	public ArrayList<BrandVO> getItemList(String brandname);
 
 	/* 바로구매하기 테이블에 데이터 추가 */
-	public int getInsertOrderResult(BrandVO vo);
+	public int getInsertOrderResult(String name, int num, int price);
 
 	/* 바로구매하기 목록 보여주기 */
 	public ArrayList<BrandVO> getOrderListResult();
@@ -25,23 +26,8 @@ public interface BrandDAO {
 	public int getOrderTruncateResult();
 
 	/* 장바구니 테이블에 데이터 추가 */
-	public int getInsertBasketResult(BrandVO vo, String sid);/* {
-		int result = 0;
-		try {
-			String sql = "insert into basket_table values(sequ_basket.nextval,?,?,?,?)";
-			getPreparedStatement(sql);
-			for (int i = 0; i < vo.getBaname().length; i++) {
-				pstmt.setString(1, sid);
-				pstmt.setString(2, vo.getBaname()[i]);
-				pstmt.setInt(3, vo.getBanum()[i]);
-				pstmt.setInt(4, vo.getBaprice()[i]);
-				result = pstmt.executeUpdate();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}*/
+	public int getInsertBasketResult(String sid, String baname, int banum,
+			int baprice);
 
 	/* 장바구니 보여주기 */
 	public ArrayList<BrandVO> getBasketListResult(String sid);
@@ -51,5 +37,5 @@ public interface BrandDAO {
 
 	/* 상품평 보여주기 */
 	public ArrayList<BrandVO> getReplyList(String brandname);
-	
+
 }

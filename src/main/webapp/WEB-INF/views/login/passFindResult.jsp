@@ -51,7 +51,7 @@
 	<div class="bdiv">
 		<div id="title_div">
 			<p id="title_p1">/</p>
-			<p id="title_p2">아이디 찾기 결과</p>
+			<p id="title_p2">비밀번호 찾기 결과</p>
 			<p>
 				<img src="http://localhost:8080/dongsuh/cs_image/bg_tit_wave.png">
 			</p>

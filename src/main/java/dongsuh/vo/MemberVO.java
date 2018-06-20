@@ -6,6 +6,7 @@ public class MemberVO {
 	String id, pass, name, calender, cb1, cb2, email1, email2, jdate;
 	String phone, phone1, phone2, ad1, ad2, ad3, ad4, ad5, agree;
 	String sumAd, sumPhone, sumEmail, bd;
+	String email;
 
 	public void setCalender(String calender) {
 		this.calender = calender;
@@ -196,8 +197,8 @@ public class MemberVO {
 	}
 
 	public String getTotalAd() {
-		return "Áö¹ø : " + ad1 + " " + ad2 + "-" + ad3 + " µµ·Î¸í : " + ad4 + " "
-				+ ad5;
+		return "ì£¼ì†Œ: " + ad1 + " " + ad2 + "-" + ad3 + " ìƒì„¸ì£¼ì†Œ : " + ad4
+				+ " " + ad5;
 	}
 
 	public String getAgree() {
@@ -206,6 +207,14 @@ public class MemberVO {
 
 	public void setAgree(String agree) {
 		this.agree = agree;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

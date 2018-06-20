@@ -80,10 +80,8 @@ public class JoinController {
 		ModelAndView mv = new ModelAndView();
 
 		String sid = (String) session.getAttribute("sid");
-		// System.out.println("sid = " + sid);
 		MemberDAO dao = sqlSession.getMapper(MemberDAO.class);
 		MemberVO vo = dao.getUpdateResultVO(sid);
-		// System.out.println("phone : " + vo.getSumPhone());
 
 		mv.addObject("vo", vo);
 		mv.setViewName("/join/join_update_information");
@@ -95,9 +93,12 @@ public class JoinController {
 		ModelAndView mv = new ModelAndView();
 
 		String sid = (String) session.getAttribute("sid");
-
+		String name = vo.getName();
+		String email = vo.getEmail();
+		String phone = vo.getPhone();
+		
 		MemberDAO dao = sqlSession.getMapper(MemberDAO.class);
-		int result = dao.getUpdateNameResultVO(vo, sid);
+		int result = dao.getUpdateNameResultVO(sid, name, email, phone);
 
 		if (result == 1) {
 			mv.setViewName("/index");
@@ -110,9 +111,11 @@ public class JoinController {
 		ModelAndView mv = new ModelAndView();
 
 		String sid = (String) session.getAttribute("sid");
+		
+		String pass = vo.getPass();
 
 		MemberDAO dao = sqlSession.getMapper(MemberDAO.class);
-		int result = dao.getUpdatePassResultVO(vo, sid);
+		int result = dao.getUpdatePassResultVO(sid, pass);
 
 		if (result == 1) {
 			mv.setViewName("/index");

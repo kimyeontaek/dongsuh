@@ -57,7 +57,6 @@
 								.change(
 										function() {
 											count = count + 1;
-											// clone
 											$.trClone = $(
 													"#brand_sal_table2 tr:last")
 													.clone().html();
@@ -68,12 +67,9 @@
 													.clone().html();
 											$.bnewTr = $("<tr>" + $.btrClone
 													+ "</tr>");
-
-											// append
 											$("#brand_sal_table2").append(
 													$.newTr);
 											$("#basketTable").append($.bnewTr);
-
 											/* 바로구매하기를 위한 눈에 보이는 테이블 생성 */
 											/* 상품명 추가 기능 */
 											$.inputText = $(document
@@ -92,7 +88,6 @@
 											$(
 													"#brand_sal_table2 tr:last td:nth-child(1)")
 													.append($.inputText);
-
 											/* 상품수량 추가 기능 */
 											$.uad = $(document
 													.createElement("input"));
@@ -103,7 +98,7 @@
 												max : "99",
 												class : "uad",
 												value : "1",
-												name : "num"
+												name : "nums"
 											});
 											// 상품수량 위치
 											$(
@@ -194,7 +189,7 @@
 													.createElement("input"));
 											$.hidden1.attr({
 												type : "hidden",
-												name : "name",
+												name : "names",
 												value : $(this).val()
 											});
 
@@ -215,7 +210,7 @@
 											$.hidden2.attr({
 												type : "hidden",
 												id : "sal" + count + "sprice",
-												name : "price",
+												name : "prices",
 												value : asdf
 											});
 
@@ -382,7 +377,6 @@
 														.focus();
 												return false;
 											}
-
 											/* 상품평 등록 시작 */
 											var content = $(
 													"#brandSalReply_content")
@@ -611,11 +605,6 @@
 
 		</div>
 		<hr class="hr">
-
-
-
-
-
 
 		<div id="brand_sal_div4">
 			<div id="brand_sal_div41">

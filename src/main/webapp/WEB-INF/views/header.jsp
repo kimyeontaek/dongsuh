@@ -113,7 +113,8 @@
 											<div id="loginForm_div">
 												<div id="loginForm_div1">
 													<input type="text" name="id" placeholder="아이디"
-														id="loginForm_id"> <input type="password"
+														id="loginForm_id"> 
+														<input type="password"
 														name="pass" placeholder="비밀번호" id="loginForm_pass">
 												</div>
 												<div id="loginForm_div2">
@@ -279,7 +280,6 @@
 						</div>
 					</li>
 				</ul>
-				<br>${sessionScope.sid}
    </c:when>
 		</c:choose>
 	</div>

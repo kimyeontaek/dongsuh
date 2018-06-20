@@ -28,13 +28,13 @@
 						<c:forEach items="${list }" var="vo">
 							<tr>
 								<td>${vo.odate }</td>
-								<td>${vo.itemNameS }</td>
-								<td><input type="text" value="${vo.itemPriceS }" disabled
+								<td>${vo.name }</td>
+								<td><input type="text" value="${vo.price }" disabled
 									class="basket_val">¿ø</td>
-								<td><input type="text" value="${vo.itemNumberS }" max="999"
+								<td><input type="text" value="${vo.num }" max="999"
 									min="1" class="basket_val" disabled></td>
 								<td><input type="text" disabled class="basket_val"
-									value="${vo.itemPriceS*vo.itemNumberS}">¿ø</td>
+									value="${vo.price*vo.num}">¿ø</td>
 							</tr>
 						</c:forEach>
 

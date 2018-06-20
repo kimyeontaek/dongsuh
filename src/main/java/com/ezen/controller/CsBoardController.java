@@ -3,6 +3,7 @@ package com.ezen.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -206,7 +207,6 @@ public class CsBoardController {
 
 		String page = "";
 		int result = 0;
-
 		CsBoardDAO dao = sqlSession.getMapper(CsBoardDAO.class);
 		// 1.rfname 값을 db에서 가져오기(dao.delete실행전)
 		String rfname = dao.getRfnameResult(no);
@@ -227,18 +227,19 @@ public class CsBoardController {
 		return page;
 	}
 
-	// 선택삭제 폼
+	// 선택행 삭제하기
 	@RequestMapping(value = "/csForm_select_controller.do", method = RequestMethod.POST)
 	public String csForm_select_controller(CsBoardVO vo, String no) {
-		// vo.getCsBoard_checkbox();
-
 		String page = "";
 		int result = 0;
 		CsBoardDAO dao = sqlSession.getMapper(CsBoardDAO.class);
 		// 1.rfname 값을 db에서 배열로 가져오기(dao.delete실행전)
 		ArrayList<String> rfname = dao.getRfnameResult2(vo);
-		result = dao.getSelectDeleteResult(vo);
-
+		// 선택 삭제 부분
+		for(int i=0; i<vo.getCsBoard_checkbox().length; i++){
+			result = dao.getSelectDeleteResult(vo.getCsBoard_checkbox()[i]);
+		}
+		
 		for (String list : rfname) {
 			// 2.upload 폴더 경로 가져오기(ServletContext를 이용)
 			String path = context.getRealPath("/upload/" + list);
@@ -249,8 +250,10 @@ public class CsBoardController {
 					file.delete();
 				}
 				page = "redirect:/csBoard_list.do";
+				return page;
 			}
 		}
+		page = "redirect:/csBoard_list.do";
 		return page;
 	}
 

@@ -5,19 +5,23 @@
 
 <mapper namespace="dongsuh.dao.BasketDAO">
 
+	<!-- 장바구니 선택삭제 -->
 	<delete id="getSelectDeleteResult">
-		delete from basket_table where no = #{no}
+		delete from basket_table where no = #{param1}
 	</delete>
 
+	<!-- 주문하기시 주문하기 테이블에 데이터 저장 -->
 	<insert id="getOrderList">
 		insert into order_list_table
-		values(sysdate,#{param1},#{hname},#{hnum},#{hprice})
+		values(sysdate,#{param1},#{param2},#{param3},#{param4})
 	</insert>
 
+	<!-- 상품 주문시 장바구니 테이블 비우기 -->
 	<delete id="getTruncate"> delete from basket_table </delete>
 
+	<!-- 주문내역 가져오기 -->
 	<select id="getOrderListResult" resultType="dongsuh.vo.BasketVO">
-		select * from order_list_table where id = #{param1} order by odate
+		select to_char(odate, 'yyyy-mm-dd hh:mi:ss') as odate, name, num, price from order_list_table where id = #{param1} order by odate
 	</select>
 
 </mapper>

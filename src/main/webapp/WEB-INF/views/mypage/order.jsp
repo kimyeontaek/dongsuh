@@ -1,13 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" import="dongsuh.vo.BrandVO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<jsp:useBean id="toDay" class="java.util.Date" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+<script>
+	$(function() {
+		$("#postcodify_search_button").postcodifyPopUp();
+	});
+</script>
 
 <script>
 	$(document).ready(function() {
@@ -77,6 +83,19 @@
 				}
 			}
 			basket2.submit();
+		});
+
+		//날짜 checked시 disabled
+		$("#agree").click(function() {
+			if ($("#agree").prop("checked")) {
+				$("select[id=selectYear]").prop("disabled", true);
+				$("select[id=selectMonth]").prop("disabled", true);
+				$("select[id=selectDay]").prop("disabled", true);
+			} else {
+				$("select[id=selectYear]").prop("disabled", false);
+				$("select[id=selectMonth]").prop("disabled", false);
+				$("select[id=selectDay]").prop("disabled", false);
+			}
 		});
 
 		/* 이메일 선택 시 자동 입력 기능 */
@@ -222,13 +241,13 @@ tesxarea {
 						<c:forEach items="${list }" var="vo">
 							<tr>
 								<td></td>
-								<td>${vo.names }</td>
-								<td><input type="text" value="${vo.prices }" disabled
+								<td>${vo.name }</td>
+								<td><input type="text" value="${vo.price }" disabled
 									class="basket_val">원</td>
-								<td><input type="text" value="${vo.nums }" max="999"
-									min="1" class="basket_val" disabled></td>
+								<td><input type="text" value="${vo.num }" max="999" min="1"
+									class="basket_val" disabled></td>
 								<td><input type="text" disabled class="basket_val"
-									value="${vo.prices*vo.nums}">원</td>
+									value="${vo.price*vo.num}">원</td>
 							</tr>
 						</c:forEach>
 
@@ -238,9 +257,9 @@ tesxarea {
 
 			<form name="basket2" action="basket_order_list.do" method="post">
 				<c:forEach items="${list }" var="vo">
-					<input type="hidden" value="${vo.names }" name="hname">
-					<input type="hidden" value="${vo.prices }" name="hprice">
-					<input type="hidden" value="${vo.nums }" name="hnum">
+					<input type="hidden" value="${vo.name }" name="hname">
+					<input type="hidden" value="${vo.price }" name="hprice">
+					<input type="hidden" value="${vo.num }" name="hnum">
 				</c:forEach>
 			</form>
 
@@ -291,12 +310,10 @@ tesxarea {
 						<br> <br> <input type="text" name=""
 						class="postcodify_jibeon_address" value="" readonly
 						style="width: 29%;" /> <h8 style="color:gray;">*상세주소를 직접 입력해
-						주세요</h8><br> <br> <label>도로명 주소</label> <pre>
-							<input type="text" name="" class="postcodify_address" id="input1"
-								readonly style="width: 29%;" /> <input type="text"
-								class="postcodify_details" id="input2"
-								placeholder="상세주소 입력해주세요.">
-						</pre>
+						주세요</h8><br> <br> <label>도로명 주소</label><br> <input
+						type="text" name="" class="postcodify_address" id="input1"
+						readonly style="width: 29%;" /> <input type="text"
+						class="postcodify_details" id="input2" placeholder="상세주소 입력해주세요.">
 						<p style="color: gray">*주소변경 시 지번주소와 도로명 주소의 상세주소를 함께 변경
 							부탁드립니다.</p>
 						<p style="color: gray">*이벤트 당첨시 경품발송을 위해 지번 또는 도로명 주소의 상세 주소까지
@@ -334,14 +351,17 @@ tesxarea {
 				<tr>
 					<td style="font-weight: bold; margin: 0px 0px 0px 20px;">희망배송일</td>
 					<td style="width: 20px;"></td>
-					<td><input type="checkbox" name="agree" id="agree" checked>가능한
-						빠른 배송 요망<br> <br> 2018년 03월 14일 이후 날짜를 입력해야 합니다.<br>
-						<br> <select name="year" id="selectYear">
+					<td><input type="checkbox" name="agree" id="agree" checked="1"
+						value="T">가능한 빠른 배송 요망<br> <br> <fmt:formatDate
+							value="${toDay}" pattern="yyyy년 MM월 dd일 이후 날짜를 입력해야 합니다." /><br>
+						<br> <select name="year" id="selectYear" checked="1"
+						value="T">
 							<option value="select">선택</option>
 							<option value="2018">2018</option>
 							<option value="2019">2019</option>
 							<option value="2020">2020</option>
-					</select>년&nbsp;&nbsp; <select name="month" id="selectMonth">
+					</select>년&nbsp;&nbsp; <select name="month" id="selectMonth" checked="1"
+						value="T">
 							<option value="select">선택</option>
 							<option value="1">&nbsp;1&nbsp;</option>
 							<option value="2">2</option>
@@ -355,7 +375,8 @@ tesxarea {
 							<option value="10">10</option>
 							<option value="11">11</option>
 							<option value="12">12</option>
-					</select>월&nbsp;&nbsp; <select name="day" id="selectDay">
+					</select>월&nbsp;&nbsp; <select name="day" id="selectDay" checked="1"
+						value="T">
 							<option value="select">선택</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -391,7 +412,6 @@ tesxarea {
 					</select>일</td>
 				</tr>
 				<tr>
-
 				</tr>
 				</div>
 			</table>

@@ -14,8 +14,8 @@ public interface MemberDAO {
 
 	public MemberVO getUpdateResultVO(String sid);
 
-	public int getUpdateNameResultVO(MemberVO vo, String sid);
+	public int getUpdateNameResultVO(String sid, String name, String email, String phone);
 
-	public int getUpdatePassResultVO(MemberVO vo, String sid);
+	public int getUpdatePassResultVO(String sid, String pass);
 
 }

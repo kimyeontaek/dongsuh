@@ -465,9 +465,8 @@ h5 {
 						<hr>
 						<li><label class="bd">비밀번호</label> <input type="password"
 							id="pass" name="pass" maxlength="30"> <h8 id="h8_1">*비밀번호는
-							</h8>
-							<h8 id="h8_2">8자리 이상으로 영문과 숫자, 특수문자를 3가지 이상 조합</h8>
-							<h8 id="h8_3"> 하여 사용하세요.</h8></li>
+							</h8> <h8 id="h8_2">8자리 이상으로 영문과 숫자, 특수문자를 3가지 이상 조합</h8> <h8
+								id="h8_3"> 하여 사용하세요.</h8></li>
 						<hr>
 						<li><label class="bd">비밀번호 확인</label> <input type="password"
 							id="cpass" name="cpass" maxlength="30"> <span id="msg"></span>
@@ -524,12 +523,10 @@ h5 {
 							<button type="button" id="postcodify_search_button">우편번호</button>
 							<h8 style="color:gray;">*상세주소를 직접 입력해 주세요</h8></li>
 
-						<li id="rn"><br> <label class="bd">도로명 주소</label> <pre>
-								<input type="text" name="ad4" class="postcodify_address"
-									id="ad4" readonly /> <input type="text"
-									class="postcodify_details" id="ad5" name="ad5" maxlength="30"
-									placeholder="상세주소를 입력해 주세요.">
-							</pre>
+						<li id="rn"><br> <label class="bd">도로명 주소</label><br>
+							<input type="text" name="ad4" class="postcodify_address" id="ad4"
+							readonly /> <input type="text" class="postcodify_details"
+							id="ad5" name="ad5" maxlength="30" placeholder="상세주소를 입력해 주세요.">
 							<p style="color: gray">*주소변경 시 지번주소와 도로명 주소의 상세주소를 함께 변경
 								부탁드립니다.</p>
 							<p style="color: gray">*이벤트 당첨시 경품발송을 위해 지번 또는 도로명 주소의 상세

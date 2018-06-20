@@ -105,10 +105,10 @@ padding-top:100px;
 				
 				<br>
 				<div>
-	                 <input type="password" id="new_pass" name="pass" placeholder="새 비밀번호">
+	                 <input type="password" id="pass" name="pass" placeholder="새 비밀번호">
 				</div>
 				<div>
-	                 <input type="password" id="new_pass_s" name="pass_s" placeholder="새 비밀번호 확인">
+	                 <input type="password" id="pass_s" name="pass_s" placeholder="새 비밀번호 확인">
 	            </div>
 	            <br>	            
 	            	<input type="submit" id="pass_success" name="pass_success" value="확인" />

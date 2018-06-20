@@ -177,8 +177,9 @@ public class CsAdminController {
 		int result = 0;
 		CsBoardDAO dao = sqlSession.getMapper(CsBoardDAO.class);
 		ArrayList<String> rfname = dao.getRfnameResult2(vo);
-		result = dao.getSelectDeleteResult(vo);
-
+		for (int i = 0; i < vo.getCsBoard_checkbox().length; i++) {
+			result = dao.getSelectDeleteResult2(vo.getCsBoard_checkbox()[i]);
+		}
 		for (String list : rfname) {
 			String path = context.getRealPath("/upload/" + list);
 			if (result == 1) {
@@ -186,9 +187,11 @@ public class CsAdminController {
 				if (file.exists()) {
 					file.delete();
 				}
-				page = "redirect:/csAdminBoard_list.do";
+				page = "redirect:/csBoard_list.do";
+				return page;
 			}
 		}
+		page = "redirect:/csBoard_list.do";
 		return page;
 	}
 

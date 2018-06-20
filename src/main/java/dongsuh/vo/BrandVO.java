@@ -1,103 +1,17 @@
 package dongsuh.vo;
 
+import java.util.Arrays;
+
 public class BrandVO {
 	String content, writer, rdate, bname;
 	String brandname, brandimage, brandinfo, proinfo1, proinfo2, proinfo3,
 			itemName, itemPrice;
-	String[] name, baname;
-	int[] num, price, banum, baprice;
-	String names;
-	int nums, prices;
+	String[] names, baname;
+	int[] nums, prices, banum, baprice;
+	String name;
+	int num, price;
 	int rno, no;
 	int itemNumber;
-
-	public String getBname() {
-		return bname;
-	}
-
-	public void setBname(String bname) {
-		this.bname = bname;
-	}
-
-	public String[] getName() {
-		return name;
-	}
-
-	public void setName(String[] name) {
-		this.name = name;
-	}
-
-	public String[] getBaname() {
-		return baname;
-	}
-
-	public void setBaname(String[] baname) {
-		this.baname = baname;
-	}
-
-	public int[] getNum() {
-		return num;
-	}
-
-	public void setNum(int[] num) {
-		this.num = num;
-	}
-
-	public int[] getPrice() {
-		return price;
-	}
-
-	public void setPrice(int[] price) {
-		this.price = price;
-	}
-
-	public int[] getBanum() {
-		return banum;
-	}
-
-	public void setBanum(int[] banum) {
-		this.banum = banum;
-	}
-
-	public int[] getBaprice() {
-		return baprice;
-	}
-
-	public void setBaprice(int[] baprice) {
-		this.baprice = baprice;
-	}
-
-	public String getNames() {
-		return names;
-	}
-
-	public void setNames(String names) {
-		this.names = names;
-	}
-
-	public int getNums() {
-		return nums;
-	}
-
-	public void setNums(int nums) {
-		this.nums = nums;
-	}
-
-	public int getPrices() {
-		return prices;
-	}
-
-	public void setPrices(int prices) {
-		this.prices = prices;
-	}
-
-	public int getNo() {
-		return no;
-	}
-
-	public void setNo(int no) {
-		this.no = no;
-	}
 
 	public String getContent() {
 		return content;
@@ -121,6 +35,14 @@ public class BrandVO {
 
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
+	}
+
+	public String getBname() {
+		return bname;
+	}
+
+	public void setBname(String bname) {
+		this.bname = bname;
 	}
 
 	public String getBrandname() {
@@ -187,12 +109,92 @@ public class BrandVO {
 		this.itemPrice = itemPrice;
 	}
 
+	public String[] getNames() {
+		return names;
+	}
+
+	public void setNames(String[] names) {
+		this.names = names;
+	}
+
+	public String[] getBaname() {
+		return baname;
+	}
+
+	public void setBaname(String[] baname) {
+		this.baname = baname;
+	}
+
+	public int[] getNums() {
+		return nums;
+	}
+
+	public void setNums(int[] nums) {
+		this.nums = nums;
+	}
+
+	public int[] getPrices() {
+		return prices;
+	}
+
+	public void setPrices(int[] prices) {
+		this.prices = prices;
+	}
+
+	public int[] getBanum() {
+		return banum;
+	}
+
+	public void setBanum(int[] banum) {
+		this.banum = banum;
+	}
+
+	public int[] getBaprice() {
+		return baprice;
+	}
+
+	public void setBaprice(int[] baprice) {
+		this.baprice = baprice;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	public int getRno() {
 		return rno;
 	}
 
 	public void setRno(int rno) {
 		this.rno = rno;
+	}
+
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 	public int getItemNumber() {

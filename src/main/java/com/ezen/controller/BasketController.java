@@ -26,8 +26,10 @@ public class BasketController {
 		int result = 0;
 		BasketDAO dao = sqlSession.getMapper(BasketDAO.class);
 		// 선택 삭제
-		result = dao.getSelectDeleteResult(vo);
-
+		for(int i=0; i<vo.getBasketCheckbox().length; i++){
+			result = dao.getSelectDeleteResult(vo.getBasketCheckbox()[i]);
+		}
+		// 선택 삭제 이후 basket.do를 다시 불러온다
 		if (result == 1) {
 			page = "redirect:/basket.do";
 		}
@@ -56,10 +58,13 @@ public class BasketController {
 	public ModelAndView basket_order_list(BasketVO vo, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		String sid = (String) session.getAttribute("sid");
+		int result = 0;
 
 		BasketDAO dao = sqlSession.getMapper(BasketDAO.class);
 		// 주문내역 테이블에 추가
-		int result = dao.getOrderList(vo, sid);
+		for(int i=0; i<vo.getHname().length; i++){
+			result = dao.getOrderList(sid, vo.getHname()[i], vo.getHnum()[i], vo.getHprice()[i]);
+		}
 		// 기존 장바구니 목록 삭제
 		dao.getTruncate();
 		// 주문내역 목록 보여주기

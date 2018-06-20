@@ -14,14 +14,17 @@
 		PROINFO2, PROINFO3 FROM BRANDSAL WHERE brandname=#{param1}
 	</select>
 
+	<!-- 상품목록 -->
 	<select id="getItemList" resultType="dongsuh.vo.BrandVO">
 		SELECT ITEMNAME, ITEMPRICE
 		FROM ITEMLIST WHERE brandname=#{param1}
 	</select>
 
+	<!-- 바로구매하기 테이블에 데이터 입력 -->
 	<insert id="getInsertOrderResult">
-		insert into order_table
-		values(#{name},#{num},#{price})
+		insert into order_table(name, num, price)
+		values(#{param1}, #{param2},
+		#{param3})
 	</insert>
 
 	<select id="getOrderListResult" resultType="dongsuh.vo.BrandVO">
@@ -31,21 +34,24 @@
 
 	<delete id="getOrderTruncateResult"> delete from order_table </delete>
 
+	<!-- 장바구니 테이블에 데이터 입력 -->
 	<insert id="getInsertBasketResult">
 		insert into basket_table
-		values(sequ_basket.nextval,#{param1},#{baname},#{banum},#{baprice})
+		values(sequ_basket.nextval,#{param1},#{param2},#{param3},#{param4})
 	</insert>
 
 	<select id="getBasketListResult" resultType="dongsuh.vo.BrandVO">
-		select name, num,
-		price from basket_table where id = #{param1}
+		select no, name,
+		num, price from basket_table where id = #{param1}
 	</select>
 
+	<!-- 상품평 등록 -->
 	<insert id="getInsertResult">
 		insert into brandSal_reply
 		values(#{bname},#{content},#{writer},SYSDATE)
 	</insert>
 
+	<!-- 상품평 목록 가져오기 -->
 	<select id="getReplyList" resultType="dongsuh.vo.BrandVO">
 		select rownum as rno,
 		content, writer, TO_CHAR(RDATE,'YYYY/MM/DD') AS RDATE from ( select *
