@@ -36,6 +36,8 @@ public class BrandController {
 		mv.setViewName("/brand/brandMain");
 		mv.addObject("list", list);
 		mv.setViewName("/brand/brandMain");
+		mv.addObject("list", list);
+		mv.setViewName("/brand/brandMain");
 		return mv;
 
 	}
